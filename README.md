@@ -2,9 +2,10 @@
 
 FIXME: description
 
-## Installation
+## Run Locally
 
-Download from http://example.com/FIXME.
+Change directory to root of the app
+run: `lein run -m roarer.core`
 
 ## Usage
 
