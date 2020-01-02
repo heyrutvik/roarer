@@ -8,7 +8,6 @@
                  [compojure "1.6.1"]
                  [environ "1.1.0"]]
   :main ^:skip-aot roarer.core
-  :target-path "target/%s"
   :plugins [[environ/environ.lein "0.3.1"]]
   :uberjar-name "roarer.jar"
   :profiles {:production {:env {:production true}}})
