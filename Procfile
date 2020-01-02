@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/roarer.jar clojure.main -m roarer.web
+web: java $JVM_OPTS -cp target/roarer.jar clojure.main -m roarer.core
