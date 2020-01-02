@@ -1,17 +1,16 @@
 (ns roarer.core
   (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
-            [ring.util.response :as response]
-            [compojure.core :as compojure]))
+            [compojure.handler :refer [site]]
+            [compojure.core :refer [defroutes GET]]
+            [environ.core :refer [env]]))
 
-(defn response-handler [request-map]
-  (response/response
-    "<html><body>Welcome to Roarer!</body></html>"))
+(defroutes app
+  (GET "/" []
+    {:status 200
+     :headers {"Content-Type" "text/plain"}
+     :body "Welcome to Roarer!"}))
 
-(compojure/defroutes handler
-  (compojure/GET "/" req response-handler))
-
-(defn -main [& args]
-  (jetty/run-jetty
-    handler
-    {:port 8080}))
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 8080))]
+    (jetty/run-jetty (site #'app) {:port port :join? false})))
