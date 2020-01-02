@@ -5,7 +5,10 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring "1.8.0"]
-                 [compojure "1.6.1"]]
-  :main ^:skip-aot roarer.core
-  :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+                 [compojure "1.6.1"]
+                 [environ "1.1.0"]]
+  :min-lein-version "2.0.0"
+  :plugins [[environ/environ.lein "0.3.1"]]
+  :hooks [environ.leiningen.hooks]
+  :uberjar-name "roarer.jar"
+  :profiles {:production {:env {:production true}}})
