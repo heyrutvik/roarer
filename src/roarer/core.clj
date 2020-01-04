@@ -1,23 +1,20 @@
 (ns roarer.core
-  (:gen-class)
-  (:require [ring.adapter.jetty :as jetty]
+  (:require [ring.adapter.jetty :refer [run-jetty]]
             [compojure.handler :refer [site]]
-            [compojure.core :refer [defroutes GET]]
-            [compojure.route :as route]
+            [compojure.core :refer [routes]]
             [environ.core :refer [env]]
             [clojure.tools.logging :as log]
-            [ring.middleware.resource :refer [wrap-resource]]))
+            [roarer.oauth.routes :as oauth-routes]
+            [roarer.common.routes :as common-routes]
+            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [roarer.oauth.unauthorized :refer [auth-backend]]))
 
-(defroutes app
-  (GET "/" []
-    {:status 200
-     :headers {"Content-Type" "text/plain"}
-     :body "Welcome to Roarer!"})
-  (route/resources "/"))
+(def app (routes common-routes/base oauth-routes/twitter))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 8080))]
     (log/info (str "Starting the app at " port))
-    (jetty/run-jetty
+    (run-jetty
       (-> (site #'app)
-          (wrap-resource "public")) {:port port :join? false})))
+          (wrap-authentication auth-backend)
+          (wrap-authorization auth-backend)) {:port port :join? false})))
