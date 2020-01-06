@@ -7,14 +7,21 @@
             [roarer.oauth.routes :as oauth-routes]
             [roarer.common.routes :as common-routes]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
-            [roarer.oauth.unauthorized :refer [auth-backend]]))
+            [roarer.oauth.unauthorized :refer [auth-backend]]
+            [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
+            [roarer.thread.routes :as thread-routes]
+            [ring.middleware.reload :refer [wrap-reload]]))
 
-(def app (routes common-routes/base oauth-routes/twitter))
+(def app
+  (routes common-routes/common oauth-routes/twitter thread-routes/thread))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 8080))]
     (log/info (str "Starting the app at " port))
     (run-jetty
       (-> (site #'app)
+          (wrap-reload)                                     ;; helpful in development
           (wrap-authentication auth-backend)
-          (wrap-authorization auth-backend)) {:port port :join? false})))
+          (wrap-authorization auth-backend)
+          (wrap-json-response)
+          (wrap-json-body {:keywords? true})) {:port port :join? false})))
