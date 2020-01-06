@@ -18,7 +18,7 @@
     <orderEntry type="library" name="Leiningen: buddy/buddy-auth:2.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: buddy/buddy-core:1.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: buddy/buddy-sign:3.1.0" level="project" />
-    <orderEntry type="library" name="Leiningen: cheshire:5.8.1" level="project" />
+    <orderEntry type="library" name="Leiningen: cheshire:5.9.0" level="project" />
     <orderEntry type="library" name="Leiningen: clj-http:2.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: clj-oauth:1.5.5" level="project" />
     <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
@@ -27,9 +27,9 @@
     <orderEntry type="library" name="Leiningen: clout:2.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-clj:0.8.309" level="project" />
     <orderEntry type="library" name="Leiningen: com.cognitect/transit-java:0.8.332" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.9.6" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-cbor:2.9.6" level="project" />
-    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-smile:2.9.6" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.core/jackson-core:2.9.9" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-cbor:2.9.9" level="project" />
+    <orderEntry type="library" name="Leiningen: com.fasterxml.jackson.dataformat/jackson-dataformat-smile:2.9.9" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.findbugs/jsr305:3.0.1" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.code.gson/gson:2.7" level="project" />
     <orderEntry type="library" name="Leiningen: com.google.errorprone/error_prone_annotations:2.0.18" level="project" />
@@ -89,6 +89,7 @@
     <orderEntry type="library" name="Leiningen: ring/ring-core:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-devel:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-jetty-adapter:1.8.0" level="project" />
+    <orderEntry type="library" name="Leiningen: ring/ring-json:0.5.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring/ring-servlet:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: ring:1.8.0" level="project" />
     <orderEntry type="library" name="Leiningen: slingshot:0.12.2" level="project" />

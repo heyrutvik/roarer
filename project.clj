@@ -10,7 +10,8 @@
                  [environ "1.1.0"]
                  [clj-oauth "1.5.5"]
                  [buddy/buddy-auth "2.2.0"]
-                 [metosin/ring-http-response "0.9.1"]]
+                 [metosin/ring-http-response "0.9.1"]
+                 [ring/ring-json "0.5.0"]]
   :min-lein-version "2.0.0"
   :uberjar-name "roarer.jar"
   :profiles {:production {:env {:production true}}})

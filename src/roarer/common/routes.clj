@@ -17,7 +17,7 @@
         "<body>Welcome to Roarer, <i>" username "</i>!"
         "<br /><a href=\"/logout\">Logout</a></body>"))))
 
-(defroutes base
+(defroutes common
   (GET "/" {session :session}                               ;; App main page endpoint
     (if-not (authenticated? session)
       (throw-unauthorized)
@@ -26,5 +26,5 @@
     (response
       (str "<a href=\"" (tw/oauth-init-uri req) "\">Login with Twitter</a>")))
   (GET "/logout" []                                         ;; Logout endpoint
-    (-> (redirect "/") (assoc :session nil)))
+     (-> (redirect "/") (assoc :session nil)))
   (route/resources "/"))
