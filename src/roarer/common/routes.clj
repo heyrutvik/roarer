@@ -4,10 +4,9 @@
             [compojure.route :as route]
             [environ.core :refer [env]]
             [ring.util.response :refer [response redirect]]
-            [buddy.auth :refer [authenticated? throw-unauthorized]]
             [roarer.oauth.twitter :as tw]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
-            [roarer.oauth.unauthorized :refer [auth-backend]]))
+            [roarer.oauth.util :refer [auth-backend run-if-authenticated]]))
 
 (defn- welcome-html [session]
   "Not so fancy html to welcome logged in user. Primarily for testing."
@@ -19,9 +18,7 @@
 
 (defroutes common
   (GET "/" {session :session}                               ;; App main page endpoint
-    (if-not (authenticated? session)
-      (throw-unauthorized)
-      (welcome-html session)))
+    (run-if-authenticated session welcome-html))
   (GET "/login" req                                         ;; Login endpoint
     (response
       (str "<a href=\"" (tw/oauth-init-uri req) "\">Login with Twitter</a>")))
