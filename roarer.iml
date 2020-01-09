@@ -19,7 +19,7 @@
     <orderEntry type="library" name="Leiningen: buddy/buddy-core:1.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: buddy/buddy-sign:3.1.0" level="project" />
     <orderEntry type="library" name="Leiningen: cheshire:5.9.0" level="project" />
-    <orderEntry type="library" name="Leiningen: clj-http:2.0.1" level="project" />
+    <orderEntry type="library" name="Leiningen: clj-http:3.10.0" level="project" />
     <orderEntry type="library" name="Leiningen: clj-oauth:1.5.5" level="project" />
     <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
     <orderEntry type="library" name="Leiningen: clj-tuple:0.2.2" level="project" />
@@ -60,9 +60,12 @@
     <orderEntry type="library" name="Leiningen: net.i2p.crypto/eddsa:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: ns-tracker:0.4.0" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient:4.5" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore:4.4.1" level="project" />
-    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpmime:4.5" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpasyncclient:4.1.4" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient-cache:4.5.8" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpclient:4.5.8" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore-nio:4.4.10" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpcore:4.4.11" level="project" />
+    <orderEntry type="library" name="Leiningen: org.apache.httpcomponents/httpmime:4.5.8" level="project" />
     <orderEntry type="library" name="Leiningen: org.bouncycastle/bcpkix-jdk15on:1.54" level="project" />
     <orderEntry type="library" name="Leiningen: org.bouncycastle/bcprov-jdk15on:1.54" level="project" />
     <orderEntry type="library" name="Leiningen: org.checkerframework/checker-qual:2.0.0" level="project" />

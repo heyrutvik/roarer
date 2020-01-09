@@ -13,8 +13,10 @@
   "Determines what to do based on the response of twitter auth"
   (if (:denied request-token)
     (-> (found "/") (assoc :flash {:denied true}))
-    (let [{:keys [user_id screen_name]} (tw/fetch-access-token request-token)]
-      (-> (found "/") (assoc :session (assoc session :identity user_id :screen-name screen_name))))))
+    (let [access-token (tw/fetch-access-token request-token)
+          user-id (access-token :user_id)
+          user-info (dissoc access-token :user_id)]
+      (-> (found "/") (assoc :session (conj session user-info {:identity user-id}))))))
 
 (defroutes twitter
   (GET "/oauth/twitter-init" req (twitter-init req))        ;; endpoint to initialize twitter auth

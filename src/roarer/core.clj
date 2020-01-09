@@ -7,7 +7,7 @@
             [roarer.oauth.routes :as oauth-routes]
             [roarer.common.routes :as common-routes]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
-            [roarer.oauth.unauthorized :refer [auth-backend]]
+            [roarer.oauth.util :refer [auth-backend]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [roarer.thread.routes :as thread-routes]
             [ring.middleware.reload :refer [wrap-reload]]))
