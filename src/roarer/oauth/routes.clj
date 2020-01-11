@@ -16,6 +16,7 @@
     (let [access-token (tw/fetch-access-token request-token)
           user-id (access-token :user_id)
           user-info (dissoc access-token :user_id)]
+      ;; session keys are underscore_separated, not hyphen-separated.
       (-> (found "/") (assoc :session (conj session user-info {:identity user-id}))))))
 
 (defroutes twitter

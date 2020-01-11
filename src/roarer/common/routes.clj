@@ -10,7 +10,7 @@
 
 (defn- welcome-html [session]
   "Not so fancy html to welcome logged in user. Primarily for testing."
-  (let [username (session :screen-name)]
+  (let [username (session :screen_name)]
     (response
       (str
         "<body>Welcome to Roarer, <i>" username "</i>!"
