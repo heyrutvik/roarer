@@ -16,7 +16,7 @@
   (routes common-routes/common oauth-routes/twitter thread-routes/thread))
 
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 8080))]
+  (let [port (Integer. (or port (env :port) 8081))]
     (log/info (str "Starting the app at " port))
     (run-jetty
       (-> (site #'app)
