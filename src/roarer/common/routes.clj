@@ -6,7 +6,7 @@
             [ring.util.response :refer [response redirect]]
             [roarer.oauth.twitter :as tw]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
-            [roarer.oauth.util :refer [auth-backend run-if-authenticated]]))
+            [roarer.util.oauth :refer [auth-backend run-if-authenticated]]))
 
 (defn- welcome-html [session]
   "Not so fancy html to welcome logged in user. Primarily for testing."

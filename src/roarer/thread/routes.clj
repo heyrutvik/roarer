@@ -2,7 +2,7 @@
   (:require [compojure.core :refer [defroutes POST]]
             [roarer.thread.core :refer [split publish]]
             [ring.util.response :refer [response]]
-            [roarer.oauth.util :refer [run-if-authenticated]]))
+            [roarer.util.oauth :refer [run-if-authenticated]]))
 
 (defroutes thread
   (POST "/thread" {session :session body :body}
