@@ -1,4 +1,4 @@
-(ns roarer.oauth.util
+(ns roarer.util.oauth
   (:require [buddy.auth.backends.session :refer [session-backend]]
             [ring.util.http-response :refer [forbidden]]
             [ring.util.response :refer [redirect]]
