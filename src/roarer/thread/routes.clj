@@ -5,7 +5,7 @@
             [roarer.util.oauth :refer [run-if-authenticated]]))
 
 (defroutes thread
-  (POST "/thread" {session :session body :body}
+  (POST "/api/thread" {session :session body :body}
     (run-if-authenticated session split (:content body)))
-  (POST "/publish" {session :session body :body}
+  (POST "/api/publish" {session :session body :body}
     (run-if-authenticated session publish (:thread body))))

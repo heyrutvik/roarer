@@ -22,6 +22,6 @@
   (GET "/login" req                                         ;; Login endpoint
     (response
       (str "<a href=\"" (tw/oauth-init-uri req) "\">Login with Twitter</a>")))
-  (GET "/logout" []                                         ;; Logout endpoint
+  (GET "/api/logout" []                                         ;; Logout endpoint
      (-> (redirect "/") (assoc :session nil)))
   (route/resources "/"))
