@@ -11,3 +11,6 @@ pom.xml.asc
 .hgignore
 .hg/
 .idea/
+/frontend/sandip_ui/node_modules
+/frontend/npm-debug.log
+npm-debug.log
