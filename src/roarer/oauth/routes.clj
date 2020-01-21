@@ -12,12 +12,12 @@
 (defn- twitter-callback [request-token {:keys [session]}]
   "Determines what to do based on the response of twitter auth"
   (if (:denied request-token)
-    (-> (found "/") (assoc :flash {:denied true}))
+    (-> (found "http://localhost:8080/login") (assoc :flash {:denied true})) ;; TODO remove static URL
     (let [access-token (tw/fetch-access-token request-token)
           user-id (access-token :user_id)
           user-info (dissoc access-token :user_id)]
       ;; session keys are underscore_separated, not hyphen-separated.
-      (-> (found "/") (assoc :session (conj session user-info {:identity user-id}))))))
+      (-> (found "http://localhost:8080/") (assoc :session (conj session user-info {:identity user-id})))))) ;; TODO remove static URL
 
 (defroutes twitter
   (GET "/oauth/twitter-init" req (twitter-init req))        ;; endpoint to initialize twitter auth
