@@ -14,7 +14,7 @@
     (response
       (str
         "<body>Welcome to Roarer, <i>" username "</i>!"
-        "<br /><a href=\"/logout\">Logout</a></body>"))))
+        "<br /><a href=\"/api/logout\">Logout</a></body>"))))
 
 (defroutes common
   (GET "/" {session :session}                               ;; App main page endpoint
