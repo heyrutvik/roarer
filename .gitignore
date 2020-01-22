@@ -12,5 +12,6 @@ pom.xml.asc
 .hg/
 .idea/
 /frontend/sandip_ui/node_modules
+frontend/sandip_ui/package-lock.json
 /frontend/npm-debug.log
 npm-debug.log
