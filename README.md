@@ -13,9 +13,40 @@ FIXME: explanation
 
     $ java -jar roarer-0.1.0-standalone.jar [args]
 
-## Options
+## Endpoints
 
-FIXME: listing of options this app accepts.
+GET `/oauth/twitter-init`
+
+- It will initialize twitter login process, frontend developer will use it when user will click on "login with twitter" button on `/login` page.
+
+GET `/api/logout`
+
+- It will destroy user session.
+
+POST `/api/thread` 
+
+- Authenticated: **Yes**
+- This endpoint will take content to publish and return series of tweets in response.
+- Payload:
+
+  `{"content": "long content"}`
+
+- Response:
+
+  `["thread tweet 1", "thread tweet 2", "thread tweet 1"]`
+
+POST `/api/publish`
+
+- Authenticated: **Yes**
+- This endpoint will take list of tweets and publish it on twitter as thread.
+- Payload:
+
+  `{"thread": ["thread tweet 1", "thread tweet 2", "thread tweet 1"]}`
+
+- Response:
+
+  `{"message": "Roared it!"}`
+
 
 ## Examples
 
