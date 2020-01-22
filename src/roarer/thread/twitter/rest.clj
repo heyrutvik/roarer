@@ -22,7 +22,8 @@
     (-> (URLEncoder/encode s "UTF-8")
         (.replace "+" "%20")
         (.replace "*" "%2A")
-        (.replace "%7E" "~"))))
+        (.replace "%7E" "~")
+        (.replace "%252A" "%2A"))))                         ;; avoids re-encoding of `*`
 
 (defn key-value-percent-encode [v2] (vec (map percent-encode v2)))
 
