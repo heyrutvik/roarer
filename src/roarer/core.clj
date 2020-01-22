@@ -10,17 +10,22 @@
             [roarer.util.oauth :refer [auth-backend]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [roarer.thread.routes :as thread-routes]
-            [ring.middleware.reload :refer [wrap-reload]]))
+            [ring.middleware.reload :refer [wrap-reload]]
+            [ring.middleware.cors :refer [wrap-cors]]))
 
 (def app
   (routes common-routes/common oauth-routes/twitter thread-routes/thread))
 
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 8081))]
+  (let [port (Integer. (or port (env :port) 8081))
+        front-end (env :roarit-front-end-domain)]
     (log/info (str "Starting the app at " port))
     (run-jetty
       (-> (site #'app)
           (wrap-reload)                                     ;; helpful in development
+          (wrap-cors
+            :access-control-allow-origin (re-pattern front-end)
+            :access-control-allow-methods [:get :post])
           (wrap-authentication auth-backend)
           (wrap-authorization auth-backend)
           (wrap-json-response)
