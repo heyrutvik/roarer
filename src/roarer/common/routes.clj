@@ -8,20 +8,7 @@
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [roarer.util.oauth :refer [auth-backend run-if-authenticated]]))
 
-(defn- welcome-html [session]
-  "Not so fancy html to welcome logged in user. Primarily for testing."
-  (let [username (session :screen_name)]
-    (response
-      (str
-        "<body>Welcome to Roarer, <i>" username "</i>!"
-        "<br /><a href=\"/api/logout\">Logout</a></body>"))))
-
 (defroutes common
-  (GET "/" {session :session}                               ;; App main page endpoint
-    (run-if-authenticated session welcome-html))
-  (GET "/login" req                                         ;; Login endpoint
-    (response
-      (str "<a href=\"" (tw/oauth-init-uri req) "\">Login with Twitter</a>")))
   (GET "/api/logout" []                                         ;; Logout endpoint
-     (-> (redirect "/") (assoc :session nil)))
+     (-> (redirect "/") (assoc :session nil :cookies nil)))
   (route/resources "/"))
