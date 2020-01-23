@@ -2,7 +2,8 @@
   (:require [compojure.core :refer [defroutes GET]]
             [ring.util.http-response :refer [ok found]]
             [roarer.oauth.twitter :as tw]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [clojure.tools.logging :as log])
   (:import (java.util UUID)))
 
 (defn- twitter-init [request]
@@ -19,7 +20,13 @@
       (let [access-token (tw/fetch-access-token request-token)
             user-id (access-token :user_id)
             user-info (dissoc access-token :user_id)
-            cookie {"roarer-session" {:value (.toString (UUID/randomUUID)) :http-only false :path "/" :domain front-end}}]
+            cookie {"roarer-session" {
+                                      :value (.toString (UUID/randomUUID))
+                                      :http-only false
+                                      :path "/"
+                                      :domain front-end
+                                      :same-site :lax}}
+            _ (log/info cookie)]
         ;; session keys are underscore_separated, not hyphen-separated.
         (->
           (found (str front-end "/"))
