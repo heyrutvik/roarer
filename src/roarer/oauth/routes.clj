@@ -16,20 +16,18 @@
   "Determines what to do based on the response of twitter auth"
   (let [front-end (env :roarit-front-end-domain)]
     (if (:denied request-token)
-      (-> (found (str front-end "/login")) (assoc :flash {:denied true}))
+      (do
+        (log/debug "Request token denied.")
+        (-> (found (str front-end "/failure")) (assoc :flash {:denied true})))
       (let [access-token (tw/fetch-access-token request-token)
             user-id (access-token :user_id)
-            user-info (dissoc access-token :user_id)
-            cookie {"roarer-session" {
-                                      :value (.toString (UUID/randomUUID))
-                                      :http-only false
-                                      :path "/"
-                                      :domain "herokuapp.com"}}
-            _ (log/info cookie)]
+            user-info (dissoc access-token :user_id)]
         ;; session keys are underscore_separated, not hyphen-separated.
-        (->
-          (found (str front-end "/"))
-          (assoc :session (conj session user-info {:identity user-id}) :cookies (conj cookies cookie)))))))
+        (do
+          (log/debug "Request token accepted.")
+          (->
+            (found (str front-end "/success/" (.toString (UUID/randomUUID))))
+            (assoc :session (conj session user-info {:identity user-id}))))))))
 
 (defroutes twitter
   (GET "/oauth/twitter-init" req (twitter-init req))        ;; endpoint to initialize twitter auth
