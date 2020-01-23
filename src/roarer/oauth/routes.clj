@@ -24,7 +24,7 @@
                                       :value (.toString (UUID/randomUUID))
                                       :http-only false
                                       :path "/"
-                                      :domain front-end
+                                      :domain (second (clojure.string/split front-end #"//"))
                                       :same-site :lax}}
             _ (log/info cookie)]
         ;; session keys are underscore_separated, not hyphen-separated.
