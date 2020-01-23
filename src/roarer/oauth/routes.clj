@@ -2,7 +2,8 @@
   (:require [compojure.core :refer [defroutes GET]]
             [ring.util.http-response :refer [ok found]]
             [roarer.oauth.twitter :as tw]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [clojure.tools.logging :as log])
   (:import (java.util UUID)))
 
 (defn- twitter-init [request]
@@ -15,15 +16,19 @@
   "Determines what to do based on the response of twitter auth"
   (let [front-end (env :roarit-front-end-domain)]
     (if (:denied request-token)
-      (-> (found (str front-end "/login")) (assoc :flash {:denied true}))
+      (do
+        (log/info "request-token denied, redirecting to login page.")
+        (-> (found (str front-end "/login")) (assoc :flash {:denied true})))
       (let [access-token (tw/fetch-access-token request-token)
             user-id (access-token :user_id)
             user-info (dissoc access-token :user_id)
             cookie {"roarer-session" {:value (.toString (UUID/randomUUID)) :http-only false :path "/"}}]
         ;; session keys are underscore_separated, not hyphen-separated.
-        (->
-          (found (str front-end "/"))
-          (assoc :session (conj session user-info {:identity user-id}) :cookies (conj cookies cookie)))))))
+        (do
+          (log/info "request-token accepted, redirecting to dashboard.")
+          (->
+            (found (str front-end "/"))
+            (assoc :session (conj session user-info {:identity user-id}) :cookies (conj cookies cookie))))))))
 
 (defroutes twitter
   (GET "/oauth/twitter-init" req (twitter-init req))        ;; endpoint to initialize twitter auth
