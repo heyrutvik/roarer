@@ -13,5 +13,5 @@
   (GET "/" []
      (-> (ok {:message "Roarer backend running..."})))
   (GET "/api/logout" []                                         ;; Logout endpoint
-     (-> (redirect "/") (assoc :session nil :cookies nil)))
+     (-> (redirect "/") (assoc :session nil)))
   (route/resources "/"))

@@ -11,7 +11,8 @@
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [roarer.thread.routes :as thread-routes]
             [ring.middleware.reload :refer [wrap-reload]]
-            [ring.middleware.cors :refer [wrap-cors]]))
+            [ring.middleware.cors :refer [wrap-cors]]
+            [roarer.util.middleware :refer [update-roarer-session-response set-roarer-session-request]]))
 
 (def app
   (routes common-routes/common oauth-routes/twitter thread-routes/thread))
@@ -29,4 +30,6 @@
           (wrap-authentication auth-backend)
           (wrap-authorization auth-backend)
           (wrap-json-response)
-          (wrap-json-body {:keywords? true})) {:port port :join? false})))
+          (wrap-json-body {:keywords? true})
+          (set-roarer-session-request)
+          (update-roarer-session-response)) {:port port :join? false})))
