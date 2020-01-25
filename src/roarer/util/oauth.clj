@@ -17,6 +17,6 @@
   f takes session as first argument, and provided args if any"
   (if-not (authenticated? session)
     (do
-      (log/info "Could not authenticate!")
+      (log/warn "Could not authenticate!")
       throw-unauthorized)
     (apply f (cons session args))))

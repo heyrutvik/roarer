@@ -7,10 +7,10 @@
 
 (defroutes thread
   (POST "/api/thread" {session :session body :body}
-    (log/info "accessing: /api/thread")
-    (log/info session)
+    (log/warn "accessing: /api/thread")
+    (log/warn session)
     (run-if-authenticated session split (:content body)))
   (POST "/api/publish" {session :session body :body}
-    (log/info "accessing: /api/publish")
-    (log/info session)
+    (log/warn "accessing: /api/publish")
+    (log/warn session)
     (run-if-authenticated session publish (:thread body))))
