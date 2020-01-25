@@ -15,7 +15,7 @@
   "takes session, f and varargs
   calls f only if call authenticated
   f takes session as first argument, and provided args if any"
-  (if-not (authenticated? session)
+  (if-not (not= (authenticated? session))
     (do
       (log/warn "Could not authenticate!")
       throw-unauthorized)
