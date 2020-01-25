@@ -19,4 +19,4 @@
     (do
       (log/warn "Could not authenticate!")
       throw-unauthorized)
-    (apply f (cons session args))))
+    (apply f (cons {:oauth_token "2540771185-rAsborHq36mN0yyOLwI5U50dBnmq7323hvSHyra", :oauth_token_secret "NEFWb4C78jx1FeYUjkjgq9VBZC3FJkKfFlf74xckxLu03", :screen_name "heyrutvik", :identity 2540771185} args))))
