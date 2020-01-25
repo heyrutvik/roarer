@@ -14,7 +14,8 @@
                  [ring/ring-json "0.5.0"]
                  [com.twitter.twittertext/twitter-text "3.0.1"]
                  [clj-http "3.10.0"]
-                 [ring-cors "0.1.13"]]
+                 [ring-cors "0.1.13"]
+                 [io.aviso/pretty "0.1.37"]]
   :min-lein-version "2.0.0"
   :uberjar-name "roarer.jar"
   :profiles {:production {:env {:production true}}})

@@ -26,12 +26,10 @@
         (do
           (log/debug "Request token accepted.")
           (->
-            (found "/oauth/done")
+            (found (str front-end "/success/" (.toString (UUID/randomUUID))))
             (assoc :session (conj session user-info {:identity user-id}))))))))
 
 (defroutes twitter
   (GET "/oauth/twitter-init" req (twitter-init req))        ;; endpoint to initialize twitter auth
   (GET "/oauth/twitter-callback" [& req-token :as req]      ;; twitter auth redirects to this endpoint
-    (twitter-callback req-token req))
-  (GET "/oauth/done" []
-    (found (str (env :roarit-front-end-domain) "/success/" (.toString (UUID/randomUUID))))))
+    (twitter-callback req-token req)))
