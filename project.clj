@@ -18,4 +18,6 @@
                  [io.aviso/pretty "0.1.37"]]
   :min-lein-version "2.0.0"
   :uberjar-name "roarer.jar"
+  :plugins [[io.aviso/pretty "0.1.37"]]
+  :middleware [io.aviso.lein-pretty/inject]
   :profiles {:production {:env {:production true}}})
