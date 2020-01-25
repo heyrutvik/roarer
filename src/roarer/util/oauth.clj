@@ -2,7 +2,8 @@
   (:require [buddy.auth.backends.session :refer [session-backend]]
             [ring.util.http-response :refer [forbidden]]
             [ring.util.response :refer [redirect]]
-            [buddy.auth :refer [authenticated? throw-unauthorized]]))
+            [buddy.auth :refer [authenticated? throw-unauthorized]]
+            [clojure.tools.logging :as log]))
 
 (defn unauthorized-handler [request metadata]
   (if (authenticated? request) forbidden (redirect "/login")))
@@ -15,5 +16,7 @@
   calls f only if call authenticated
   f takes session as first argument, and provided args if any"
   (if-not (authenticated? session)
-    (throw-unauthorized)
+    (do
+      (log/info "Could not authenticate!")
+      throw-unauthorized)
     (apply f (cons session args))))
